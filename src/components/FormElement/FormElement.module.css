@@ -1,0 +1,12 @@
+.container p {
+  margin: 0;
+  font-size: 0.7em;
+  color: #eee;
+}
+
+.container .input {
+  border-radius: 10px;
+  border: none;
+  padding: 7px;
+}
+/*# sourceMappingURL=FormElement.module.css.map */
