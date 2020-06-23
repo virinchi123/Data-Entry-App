@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import sortByName from '../../functions/sortByName'
 
 const initialState = {
     items: [],
@@ -22,14 +23,25 @@ const findByName=(items,name)=>{
 const reducer = (state=initialState, action) =>{
     switch (action.type){
         case actionTypes.addItem:
+            for(let element of state.items){
+                if(element.name===action.payload.name){
+                    console.log('element already exists')
+                    return {
+                        ...state
+                    }
+                }
+            }
             const newItem={
-                name:state.name,
-                damage:state.damage,
-                description: state.description,
+                name:action.payload.name,
+                damage:action.payload.damage,
+                damageType: action.payload.damageType,
+                level:action.payload.level,
+                description: action.payload.description,
                 highlight: false
             }
-            const itemList= [...state.items]
+            let itemList= [...state.items]
             itemList.push(newItem)
+            itemList=sortByName(itemList)
             return {
                 items: itemList,
                 name:'',

@@ -5,13 +5,15 @@ import classes from './ItemList.module.css'
 
 const ItemList = props =>{
     let items = null;
-    items=props.itemList.map((item,index)=>{
-        return (<Item name={item.name}
+    console.log(props.itemList)
+    items=props.itemList.map((itemx,index)=>{
+        //console.log(itemx)
+        return (<Item name={itemx.name}
             key={index}
-            damage={item.damage}
-            damageType = {item.damageType}
-            level={item.level}
-            description={item.description}
+            damage={itemx.damage}
+            damageType = {itemx.damageType}
+            level={itemx.level}
+            description={itemx.description}
             />)
     })
 

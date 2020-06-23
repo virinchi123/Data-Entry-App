@@ -17,6 +17,7 @@
         border-radius: 10px;
         border: 2px solid black;
         padding: 7px;
+        box-sizing: border-box;
 
         &:focus{
             border-radius: 10%;

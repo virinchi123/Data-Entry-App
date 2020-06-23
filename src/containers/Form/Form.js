@@ -10,7 +10,7 @@ const Form = props=>{
     )
 
     if(props.disabled){
-        button = <div className={[classes.submitButton,classes.disabled].join(' ')} onClick={props.submit}>
+        button = <div className={[classes.submitButton,classes.disabled].join(' ')}>
             <p>Submit</p>
         </div>
     }
