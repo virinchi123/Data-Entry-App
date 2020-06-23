@@ -4,9 +4,28 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+import ItemReducer from './store/reducers/Item';
+import currentItemReducer from './store/reducers/CurrentItem';
+
+
+const rootReducer = combineReducers(
+  {
+    item: ItemReducer,
+    currentItem: currentItemReducer
+  }
+)
+
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+//const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

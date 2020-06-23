@@ -19,6 +19,10 @@ const FormElement = (props) =>{
             </select>
             break;
 
+        case 'textarea':
+            element=<textarea {...props}/>
+            break;
+
         default: element=<input className={classes.input} {...props}/>
     }
 
