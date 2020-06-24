@@ -1,0 +1,25 @@
+.container {
+  display: -ms-grid;
+  display: grid;
+  margin-top: 5%;
+  -ms-grid-columns: (24%)[4];
+      grid-template-columns: repeat(4, 24%);
+  grid-auto-rows: -webkit-max-content;
+  grid-auto-rows: max-content;
+  width: 80%;
+  gap: 10px;
+  -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.container p {
+  font-size: 0.7em;
+  margin: 0;
+}
+
+.container h2 {
+  margin: 0;
+}
+/*# sourceMappingURL=ItemList.module.css.map */

@@ -1,0 +1,10 @@
+export const addItem = 'ADD_ITEM';
+export const removeItem = 'REMOVE_ITEM';
+export const addHighlight = 'ADD_HIGHLIGHT';
+export const removeHighlight = 'REMOVE_HIGHLIGHT';
+export const toggleHighlight = 'TOGGLE_HIGHLIGHT';
+export const setName = 'SET_NAME';
+export const setDamage = 'SET_DAMAGE';
+export const setDamageType = 'SET_DAMAGE_TYPE';
+export const setLevel = 'SET_LEVEL';
+export const setDescription = 'SET_DESCRIPTION';
