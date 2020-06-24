@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
-import sortByName from '../../functions/sortByName'
+import sortByName from '../../functions/sortByName';
+import axios from 'axios';
 
 const initialState = {
     items: [],
@@ -32,6 +33,7 @@ const reducer = (state=initialState, action) =>{
                 }
             }
             const newItem={
+                id:state.items.length,
                 name:action.payload.name,
                 damage:action.payload.damage,
                 damageType: action.payload.damageType,
@@ -42,14 +44,19 @@ const reducer = (state=initialState, action) =>{
             let itemList= [...state.items]
             itemList.push(newItem)
             itemList=sortByName(itemList)
-            return {
-                items: itemList,
-                name:'',
-                damage:'',
-                damageType: '',
-                level:'',
-                description: '',
-            }
+            axios.post('/db/items',newItem).then(res=>{
+                return {
+                    items: itemList,
+                    name: '',
+                    damage: '',
+                    damageType: '',
+                    level: '',
+                    description: '',
+                }
+            }).catch(err=>{
+                console.log(err)
+                return {...state}
+            })  
         case actionTypes.removeItem:
             const itemsList = state.items.filter(
                 item => item.name!==action.payload.name)
