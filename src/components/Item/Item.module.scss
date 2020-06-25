@@ -7,7 +7,18 @@
     align-items: flex-start;
     box-sizing: border-box;
 
-    .h2{
+    h2{
         align-self: center;
+        word-wrap: break-word;
+        width: 100%;
     }
+
+    p{
+        width: 100%;
+        word-wrap: break-word;
+    }
+}
+
+.tooltip{
+    font-size: 30px;
 }

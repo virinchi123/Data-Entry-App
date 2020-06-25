@@ -3,30 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import thunk from 'redux-thunk';
 
-import { createStore, combineReducers } from 'redux';
+import { createStore,applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
 import ItemReducer from './store/reducers/Item';
-import currentItemReducer from './store/reducers/CurrentItem';
 
 
-const rootReducer = combineReducers(
-  {
-    item: ItemReducer,
-    currentItem: currentItemReducer
-  }
-)
+const rootReducer = ItemReducer
+const composedEnhancers = compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer,composedEnhancers);
 //const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>,  
   document.getElementById('root')
 );
 

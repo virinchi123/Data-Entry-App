@@ -16,9 +16,20 @@
           box-sizing: border-box;
 }
 
-.container .h2 {
+.container h2 {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.container p {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.tooltip {
+  font-size: 30px;
 }
 /*# sourceMappingURL=Item.module.css.map */

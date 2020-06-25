@@ -31,7 +31,8 @@ app.get('/db/items',(req,res)=>{
     })
 })
 app.post('/db/items',(req,res)=>{
-    console.log(req)
+    //console.log(req)
+    console.log('in here')
     connect().then(async connection => {
         let weapon = await Weapon.create(req.body)
         res.status(200).send(weapon)

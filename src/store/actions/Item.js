@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import Axios from 'axios';
 
 export const addItem = Item =>{
     return {
@@ -36,6 +37,7 @@ export const toggleHighlight = Item=>{
 }
 
 export const setName = name =>{
+    //console.log('returned action')
     return{
         type: actionTypes.setName,
         payload: name
@@ -69,3 +71,34 @@ export const setDescription = desc => {
         payload: desc
     }
 }
+
+export const initItems = () =>dispatch=>{
+    console.log('hi')
+    Axios.get('/db/items').then(res=>{
+        console.log(res)
+        dispatch(setItems(res.data))
+        console.log('dispatched')
+    }).catch(error=>{
+        console.log(error)
+    })
+}
+
+export const setItems = (items) => {
+    return {
+        type: actionTypes.setItems,
+        payload: items
+    }
+}
+
+
+
+/*
+export const initIngredients= () =>dispatch =>{
+        axios.get("https://burger-builder-83d3a.firebaseio.com/Ingredients.json").then(response => {
+            dispatch(setIngredients(response.data))
+        }).catch(error => {
+            dispatch(setIngredientsFailed())
+        })
+
+}
+*/

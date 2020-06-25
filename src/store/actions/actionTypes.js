@@ -8,3 +8,5 @@ export const setDamage = 'SET_DAMAGE';
 export const setDamageType = 'SET_DAMAGE_TYPE';
 export const setLevel = 'SET_LEVEL';
 export const setDescription = 'SET_DESCRIPTION';
+export const initItems = 'INIT_ITEMS';
+export const setItems = 'SET_ITEMS';

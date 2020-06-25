@@ -9,12 +9,15 @@ const initialState = {
     damageType: '',
     level:'',
     description:'',
+    itemListLoading: true
 }
 
-const findByName=(items,name)=>{
+const findByName=(items,obj)=>{
     let index = 0;
     for(let item of items){
-        if(item.name===name){
+        console.log(item.name)
+        console.log(obj.name)
+        if(item.name===obj.name){
             index= items.indexOf(item)
             return index;
         }
@@ -22,15 +25,17 @@ const findByName=(items,name)=>{
 }
 
 const reducer = (state=initialState, action) =>{
+    console.log('in reducer')
     switch (action.type){
         case actionTypes.addItem:
+            console.log('adding item')
             for(let element of state.items){
                 if(element.name===action.payload.name){
                     console.log('element already exists')
                     return {
                         ...state
                     }
-                }
+                 }
             }
             const newItem={
                 id:state.items.length,
@@ -44,6 +49,7 @@ const reducer = (state=initialState, action) =>{
             let itemList= [...state.items]
             itemList.push(newItem)
             itemList=sortByName(itemList)
+            console.log('posing')
             axios.post('/db/items',newItem).then(res=>{
                 return {
                     items: itemList,
@@ -56,7 +62,15 @@ const reducer = (state=initialState, action) =>{
             }).catch(err=>{
                 console.log(err)
                 return {...state}
-            })  
+            })
+            return {
+                items: itemList,
+                name: '',
+                damage: '',
+                damageType: '',
+                level: '',
+                description: '',
+            }  
         case actionTypes.removeItem:
             const itemsList = state.items.filter(
                 item => item.name!==action.payload.name)
@@ -86,17 +100,25 @@ const reducer = (state=initialState, action) =>{
             }
         
         case actionTypes.toggleHighlight:
+            console.log(action)
             const toggleIndex = findByName(state.items, action.payload)
-            const toggleItem= {...state.items[toggleIndex]};
-            toggleItem.highlight=!toggleItem.highlight;
             const toggleItems = [...state.items];
+            const toggleItem = toggleItems[toggleIndex]
+            console.log(toggleIndex)
+            console.log(toggleItems)
+            console.log(toggleItem.highlight)
+            toggleItem.highlight = !toggleItem.highlight;
+            console.log(toggleItem.highlight)
+            console.log(toggleItems)
             toggleItems[toggleIndex]=toggleItem;
+            console.log(toggleItems)
             return{
                 ...state,
                 items:toggleItems
             }
 
         case actionTypes.setName:
+            console.log('setting name')
             return{
                 ...state,
                 name:action.payload
@@ -121,8 +143,18 @@ const reducer = (state=initialState, action) =>{
                 ...state,
                 description: action.payload
             }
+        
+        case actionTypes.setItems:
+            console.log(action.payload)
+            return{
+                ...state,
+                items:action.payload.body,
+                itemListLoading: false
+            }
+            
 
         default:
+            console.log('default')
             return state
     }
 }

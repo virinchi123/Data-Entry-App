@@ -6,5 +6,6 @@ export {
     setDamage,
     setDamageType,
     setLevel,
-    setDescription
+    setDescription,
+    initItems
 } from './Item'

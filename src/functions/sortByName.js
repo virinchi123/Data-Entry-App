@@ -1,5 +1,5 @@
 const sort = (arr) => {
-    console.log(arr)
+    //console.log(arr)
     arr.sort(function (a, b) {
         console.log(a)
         console.log(b)
@@ -10,7 +10,7 @@ const sort = (arr) => {
             return 1
         }
     });
-    console.log(arr)
+    //console.log(arr)
     return arr.reverse();
 }
 

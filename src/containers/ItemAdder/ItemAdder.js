@@ -1,10 +1,20 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Form from '../Form/Form';
 import FormElement from '../../components/FormElement/FormElement';
 import * as ItemActions from '../../store/actions/allActions';
 import {connect} from 'react-redux';
 
 const ItemAdder = props =>{
+
+    /*const initItems =()=>{
+        props.initItems()
+    }*/
+
+    useEffect(()=>{
+        //initItems();
+        console.log('hi')
+        props.initItems()
+    },[props])
 
     let disabled = false;
 
@@ -17,6 +27,7 @@ const ItemAdder = props =>{
 
 
     const nameChangedHandler = event=>{
+        console.log('changing name')
         props.setName(event.target.value.toLowerCase())
     }
 
@@ -47,6 +58,8 @@ const ItemAdder = props =>{
             description: props.description
         }
 
+        console.log('adding')
+
         props.addItem(newItem)
 
     }
@@ -64,22 +77,26 @@ const ItemAdder = props =>{
 
 const mapStateToProps = state =>{
     return {
-        name:state.item.name,
-        damage:state.item.damage,
-        damageType:state.item.damageType,
-        level:state.item.level,
-        description:state.item.description
+        name:state.name,
+        damage:state.damage,
+        damageType:state.damageType,
+        level:state.level,
+        description:state.description
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        setName: (name)=>dispatch(ItemActions.setName(name)),
+        setName: (name)=>{
+            console.log('dispatching')
+            dispatch(ItemActions.setName(name))
+        },
         setDamage: dmg=>dispatch(ItemActions.setDamage(dmg)),
         setDamageType: dtype=>dispatch(ItemActions.setDamageType(dtype)),
         setLevel:level=>dispatch(ItemActions.setLevel(level)),
         setDescription:desc=>dispatch(ItemActions.setDescription(desc)),
-        addItem:Item=>dispatch(ItemActions.addItem(Item))
+        addItem:Item=>{dispatch(ItemActions.addItem(Item))},
+        initItems:()=>{dispatch(ItemActions.initItems())}
     }
 }
 
