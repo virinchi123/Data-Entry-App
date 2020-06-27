@@ -10,6 +10,20 @@
     align-self: center;
     justify-self: center;
     //height: 100vh;
+    margin: auto;
+    margin-top: 5%;
+
+
+    @media(max-width:822px) {
+        grid-template-columns: repeat(2,48%);
+    }
+
+    @media(max-width:538px) {
+        grid-template-columns: repeat(1,90%);
+    }
+
+
+
 
     p{
         font-size: 0.7em;

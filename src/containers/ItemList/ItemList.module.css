@@ -12,6 +12,22 @@
       align-self: center;
   -ms-grid-column-align: center;
       justify-self: center;
+  margin: auto;
+  margin-top: 5%;
+}
+
+@media (max-width: 822px) {
+  .container {
+    -ms-grid-columns: (48%)[2];
+        grid-template-columns: repeat(2, 48%);
+  }
+}
+
+@media (max-width: 538px) {
+  .container {
+    -ms-grid-columns: (90%)[1];
+        grid-template-columns: repeat(1, 90%);
+  }
 }
 
 .container p {
