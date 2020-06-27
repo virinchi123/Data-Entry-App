@@ -12,6 +12,7 @@
           align-items: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-size: 2vw;
 }
 
 .container p {
@@ -29,6 +30,12 @@
   padding: 7px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+@media (max-width: 554px) {
+  .container .input {
+    width: 50%;
+  }
 }
 
 .container .input:focus {
