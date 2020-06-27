@@ -17,9 +17,9 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "..", "build")));
 //app.use(express.static("public"));
 
-app.get('/',(req,res)=>{
-    res.send('<h1>Hello World</h1>')
-})
+
+
+
 
 app.get('/db/items',(req,res)=>{
     console.log('connecting to db')
@@ -41,7 +41,7 @@ app.post('/db/items',(req,res)=>{
     })
 })
 
-app.get('/server', function (req, res) {
+app.get('/', function (req, res) {
     console.log(path.join(__dirname, '..', './public', 'index.html'))
     res.sendFile(path.join(__dirname,'..','./build', 'index.html'));
 });
